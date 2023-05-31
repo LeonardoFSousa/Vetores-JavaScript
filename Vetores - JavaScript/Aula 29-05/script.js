@@ -63,27 +63,35 @@ function exe3(){
         codigos [i] = Number (prompt(`Informe o código do produto`))
         estoque [i] = Number (prompt(`Informe a quantidade do produto em estoque`))
     }
+
+    let cliente = Number (prompt(`Informe o código do cliente`))
+
+    while (cliente != 0){
     let codigo = Number (prompt(`Informe o código do produto para compra`))
     let quantidade = Number (prompt(`Informe a quantidade desejada de seu produto`))
 
+    let achou = false
+
     for(let i = 0; i < 3; i++){
         if (codigo == codigos[i]){
-            estoque[i] = estoque[i] - quantidade
+            achou = true
+                if(estoque[i] >= quantidade){
+                    estoque[i] = estoque[i] - quantidade
+                    alert(`A compra foi concluída!`)
+                }
+                else {
+                    alert(`A compra não foi concluída, falta de estoque da quantia pedida do produto`)
+                }
         }
-
-        else if (codigo != codigos[i]){
-            alert(`Código de produto inexistente`)
-            
-        }
-        break
-
-        else if (quantidade > estoque[i]){
-            alert(`Quantidade desejada maior do que encontrada no estoque`)
-            break
-        }
-        
     }
 
+    if (!achou){
+        alert(`Código de produto inexistente`)
+        }
+
+        cliente = Number (prompt(`Informe outro código do cliente. Digite 0 para encerrar`))
+    }
     alert(`Estoque atualizado: ${estoque}`)
 
+    // poderia deixar de usar o 2° for e colocar if(codigos.includes(codigo))
 }
